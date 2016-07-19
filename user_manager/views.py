@@ -3,9 +3,10 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http.response import HttpResponse
 from django.core.context_processors import csrf
-from post_service.forms import LoginForm
+from user_manager.forms import LoginForm, JoinForm
 from django.contrib import auth
 from django.shortcuts import redirect
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -34,3 +35,23 @@ def login_validate(request):
         return HttpResponse('폼')
 
     return HttpResponse('오류')
+
+
+def join_page(request):
+
+    if request.method == "POST":
+        form_data = JoinForm(request.POST)
+
+        if form_data.is_valid():
+            username = form_data.cleaned_data['id']
+            password = form_data.cleaned_data['password']
+            User.objects.create_user(username=username, password=password)
+
+            return redirect('/user/login/')
+    else:
+        form_data = JoinForm()
+    template = get_template('join_page.html')
+
+    context = Context({'join_page': form_data})
+    context.update(csrf(request))
+    return HttpResponse(template.render(context))

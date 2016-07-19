@@ -4,7 +4,6 @@ from django.template import Context
 from django.http.response import HttpResponse
 from django.core.paginator import Page, PageNotAnInteger, Paginator, EmptyPage
 from django.core.context_processors import csrf
-from post_service.forms import LoginForm
 from post_service.models import Post
 from django.contrib import auth
 from django.shortcuts import redirect
