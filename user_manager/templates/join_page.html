@@ -37,7 +37,15 @@
             padding: 12px;;
         }
 
+        form ul.errorlist>li::before{
+            content:'! ';
 
+        }
+
+        form ul.errorlist>li{
+            list-style: none;
+            font-size: 13px;;
+        }
     </style>
 </head>
 <body>
@@ -48,16 +56,38 @@
                 <label for="{{  join_page.id.id_for_label }}">{{  join_page.id.label }}</label>
                 {{ join_page.id }}
             </div>
+            {% if join_page.id.errors %}
+                <ul class="errorlist">
+                    {% for error in join_page.id.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
 
+                </ul>
+            {% endif %}
             <div class="input_form">
                 <label for="{{  join_page.password.password_for_label }}">{{  join_page.password.label }}</label>
                 {{ join_page.password }}
             </div>
+            {% if join_page.password.errors %}
+                <ul class="errorlist">
+                    {% for error in join_page.password.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
 
+                </ul>
+            {% endif %}
             <div class="input_form">
                 <label for="{{  join_page.password_check.password_check_for_label }}">{{  join_page.password_check.label }}</label>
                 {{ join_page.password_check }}
             </div>
+            {% if join_page.password_check.errors %}
+                <ul class="errorlist">
+                    {% for error in join_page.password_check.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
+
+                </ul>
+            {% endif %}
         </div>
 
 
