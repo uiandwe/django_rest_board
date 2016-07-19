@@ -3,12 +3,66 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        form{
+            display: block;
+            padding: 12px;
+        }
+
+        form div.form_wrapper{
+            margin-bottom: 12px;
+            box-shadow: 2px 2px 4px #000;
+            border: 1px solid #fff;
+        }
+
+        form div.form_wrapper div.input_form{
+            display: flex;
+            margin: 12px;
+            align-items: center;
+        }
+
+        form div.form_wrapper div.input_form label{
+            margin-right: 12px;;
+            min-width: 200px;
+        }
+
+        form div.form_wrapper div.input_form input{
+            flex:1;
+        }
+
+        form input[type=submit]{
+            width: 100%;
+            background-color: #ececec;
+            border-radius: 10px;
+            padding: 12px;;
+        }
+
+
+    </style>
 </head>
 <body>
     <form action="/user/join/" method="post">
         {% csrf_token %}
-        {{ join_page }}
-        <input type="submit" value="login">
+        <div class="form_wrapper">
+            <div class="input_form">
+                <label for="{{  join_page.id.id_for_label }}">{{  join_page.id.label }}</label>
+                {{ join_page.id }}
+            </div>
+
+            <div class="input_form">
+                <label for="{{  join_page.password.password_for_label }}">{{  join_page.password.label }}</label>
+                {{ join_page.password }}
+            </div>
+
+            <div class="input_form">
+                <label for="{{  join_page.password_check.password_check_for_label }}">{{  join_page.password_check.label }}</label>
+                {{ join_page.password_check }}
+            </div>
+        </div>
+
+
+
+        <input class=="btn_submit" type="submit" value="login">
     </form>
 </body>
 </html>
