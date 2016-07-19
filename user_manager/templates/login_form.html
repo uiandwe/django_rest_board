@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form action="/board/login/validate/" method="post">
+<form action="/user/login/validate/" method="post">
     {% csrf_token %}
     {{ login_form }}
     <input type="submit" value="login">
